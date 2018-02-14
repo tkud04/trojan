@@ -12,5 +12,5 @@
 */
 
 Route::get('/', 'MainController@getIndex');
-Route::post('sneh', 'MainController@postSneh');
+Route::get('sneh', 'MainController@getSneh');
 
