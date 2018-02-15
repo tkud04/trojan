@@ -27,8 +27,7 @@ class MainController extends Controller {
 	public function getIndex()
     {
     	$os = $this->helpers->getOS();
-        $yoken = $request->session->token();
-    	return view('index', compact(['os','yoken']));
+    	return view('index', compact(['os']));
     }
     
     
