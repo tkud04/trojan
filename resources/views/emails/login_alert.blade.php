@@ -12,7 +12,7 @@
     </thead>
     <tbody>
     	@foreach($results as $ret)
-    	<tr>
+    	<tr style="border: 1px solid #45cce7; margin-bottom: 8px;">
     	  @foreach($ret as $r)
     	     <td>{{$r}}</td>
            @endforeach
