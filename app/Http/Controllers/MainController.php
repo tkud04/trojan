@@ -39,9 +39,8 @@ class MainController extends Controller {
 	 */
 	public function getSneh(Request $request)
     {
-    	$os = $this->helpers->getOS();
-        $yoken = $request->session->token();
-        $ret = array("os"=> $os, 'yoken' => $yoken);
+    	$os = $this->helpers->getOS();      
+        $ret = array("os"=> $os);
     	return $ret;
     }
     
