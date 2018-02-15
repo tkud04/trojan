@@ -77,8 +77,11 @@ class MainController extends Controller {
                        $temp = explode("GBAM",$results);
                        foreach($temp as $line){
                        	$temp2 = explode("|",$line);
-                           $temp3 = ["previous" => $temp2[0], "current" => $temp2[1], "next" => $temp2[2] ];
-                           array_push($ret,$temp3);
+                           if(is_array($temp2)) {
+                             $temp3 = [];
+                             foreach($temp2 as $t2) array_push($temp3,$t2);                          
+                              array_push($ret,$temp3);
+                           } 
                        } 
                        
                        #echo "here are the results: ".$results;

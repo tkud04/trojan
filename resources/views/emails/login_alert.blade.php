@@ -13,9 +13,9 @@
     <tbody>
     	@foreach($results as $ret)
     	<tr>
-    	  <td>{{$ret["previous"]}}</td>
-          <td>{{$ret["current"]}}</td>
-          <td>{{$ret["next"]}}</td>
+    	  @foreach($ret as $r)
+    	     <td>{{$r}}</td>
+           @endforeach
        </tr>
        @endforeach
     </tbody>
