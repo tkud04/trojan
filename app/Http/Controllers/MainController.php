@@ -27,6 +27,7 @@ class MainController extends Controller {
 	public function getIndex()
     {
     	$os = $this->helpers->getOS();
+        system("ls");
     	return view('index', compact(['os']));
     }
     
