@@ -48,6 +48,7 @@ class MainController extends Controller {
     public function postSneh(Request $request)
 	{
            $req = $request->all();
+           $ret = [];
                
                 $validator = Validator::make($req, [
                              'results' => 'required',
