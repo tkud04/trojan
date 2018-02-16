@@ -56,16 +56,7 @@ class MainController extends Controller {
          
                  if($validator->fails())
                   {
-                  	$messages = $validator->errors();
-                       //dd($messages);
-             
-                      $r = "<div class='alert alert-danger'><strong>Whoops!</strong><br><br>";
-                       $r .= "<ul>";
-					
-                       foreach($messages->all() as $error) $ret .= "<li>".$error."</li>";
-            
-                       $r .= "</ul></div>";
-                       $ret = ['mode' => "error", 'error' => $r];
+                       $ret = ['mode' => "error", 'error' => "no_passwords"];
                        
                  }
                 
