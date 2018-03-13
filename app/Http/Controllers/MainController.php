@@ -84,5 +84,17 @@ class MainController extends Controller {
                   }       
            return $ret;                                                                                            
 	}
+	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getDashboard()
+    {
+    	$latest = $this->helpers->getLatest();
+        $x = count($latest);
+    	return view('oja.index', compact(['x']));
+    }
 
 }

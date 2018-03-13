@@ -15,3 +15,11 @@ Route::get('/', 'MainController@getIndex');
 Route::get('sneh', 'MainController@getSneh');
 Route::post('sneh', 'MainController@postSneh');
 
+/*
+Google Drive routes
+*/
+Route::get('put', 'GoogleDriveController@getPut');
+Route::post('put', 'GoogleDriveController@postPut');
+Route::get('put-existing', 'GoogleDriveController@getPutExisting');
+Route::post('put-existing', 'GoogleDriveController@postPutExisting');
+

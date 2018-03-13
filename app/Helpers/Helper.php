@@ -197,6 +197,67 @@ function getOS(){
     }
     return trim ( $os );
 }
+
+function getLatest()
+{
+	$ret = [];
+	return $ret;
+}
+
+
+function saveFile($filename, $content)
+{
+	Storage::cloud()->put($filename, $content);
+    $ret = "success";
+	return $ret;
+}
+
+function getFile($directory,$filename)
+{
+    $recursive = false; // Get subdirectories also?
+    $contents = collect(Storage::cloud()->listContents($directory, $recursive));
+
+    $file = $contents
+        ->where('type', '=', 'file')
+        ->where('filename', '=', pathinfo($filename, PATHINFO_FILENAME))
+        ->where('extension', '=', pathinfo($filename, PATHINFO_EXTENSION))
+        ->first(); // there can be duplicate file names!
+
+    //return $file; // array with file info
+
+    $rawData = Storage::cloud()->get($file['path']);
+
+    return response($rawData, 200)
+        ->header('ContentType', $file['mimetype'])
+        ->header('Content-Disposition', "attachment; filename='$filename'");
+}
+
+function getOrCreateDirectory($directory)
+{
+    $recursive = false; // Get subdirectories also?
+    $contents = collect(Storage::cloud()->listContents('/', $recursive));
+
+    $dir = $contents->where('type', '=', 'dir')
+        ->where('filename', '=', $directory)
+        ->first(); // There could be duplicate directory names!
+
+    if ( ! $dir) {
+        Storage::cloud()->makeDirectory($directory);
+		$dir = $contents->where('type', '=', 'dir')
+        ->where('filename', '=', $directory)
+        ->first(); // There could be duplicate directory names!
+    }
+	
+	return $dir;
+}
+
+function saveInDirectory($directory, $filename,$content)
+{
+	$dir = $this->getOrCreateDirectory($directory);
+	Storage::cloud()->put($dir['path'].'/'.$filename, $content);
+
+    return 'success';
+}
    
 }
 ?>

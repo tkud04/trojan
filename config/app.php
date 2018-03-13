@@ -181,6 +181,7 @@ return [
 		 * Custom Service Providers...
 		 */
 		App\Providers\HelperServiceProvider::class, 
+		App\Providers\GoogleDriveServiceProvider::class,
 
     ],
 
